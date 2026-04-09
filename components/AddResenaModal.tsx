@@ -73,7 +73,7 @@ export default function AddResenaModal({
         restauranteId: restaurante.id,
         puntaje,
         comentario: comentario.trim(),
-        visitadoEn: visitadoEn ? `${visitadoEn}-01` : null,
+        visitadoEn: visitadoEn || null,
       }),
     })
 
