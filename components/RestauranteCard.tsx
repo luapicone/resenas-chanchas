@@ -110,7 +110,7 @@ export default function RestauranteCard({
             }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                  <span style={{ fontSize: '1.1rem' }}>{resena.user.avatar}</span>
+                  
                   <span style={{ fontWeight: 600, fontSize: '0.85rem' }}>{resena.user.name}</span>
                 </div>
                 <Stars puntaje={resena.puntaje} />
