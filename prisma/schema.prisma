@@ -1,0 +1,43 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  username  String   @unique
+  password  String
+  avatar    String?
+  createdAt DateTime @default(now())
+  resenas   Resena[]
+}
+
+model Restaurante {
+  id          String   @id @default(cuid())
+  nombre      String
+  categoria   String
+  direccion   String?
+  ciudad      String?
+  createdAt   DateTime @default(now())
+  resenas     Resena[]
+}
+
+model Resena {
+  id            String      @id @default(cuid())
+  puntaje       Int
+  comentario    String
+  visitadoEn    DateTime?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  userId        String
+  restauranteId String
+  user          User        @relation(fields: [userId], references: [id])
+  restaurante   Restaurante @relation(fields: [restauranteId], references: [id])
+
+  @@unique([userId, restauranteId])
+}
