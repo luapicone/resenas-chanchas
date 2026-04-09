@@ -120,7 +120,7 @@ export default function RestauranteCard({
               </p>
               {resena.visitadoEn && (
                 <p style={{ fontSize: '0.75rem', color: '#9B8B7A', marginTop: '0.35rem' }}>
-                  🗓 {new Date(resena.visitadoEn).toLocaleDateString('es-AR', { month: 'long', year: 'numeric' })}
+                  🗓 {new Date(resena.visitadoEn).toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'America/Argentina/Buenos_Aires' })}
                 </p>
               )}
               {resena.user.id === session?.user?.id && (
