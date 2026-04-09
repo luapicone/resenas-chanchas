@@ -53,7 +53,7 @@ export default function AddResenaModal({
   const [puntaje, setPuntaje] = useState(existingResena?.puntaje || 0)
   const [comentario, setComentario] = useState(existingResena?.comentario || '')
   const [visitadoEn, setVisitadoEn] = useState(
-    existingResena?.visitadoEn ? existingResena.visitadoEn.slice(0, 7) : ''
+    existingResena?.visitadoEn ? existingResena.visitadoEn.slice(0, 10) : ''
   )
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -159,7 +159,7 @@ export default function AddResenaModal({
               </label>
               <input
                 className="input-field"
-                type="month"
+                type="date"
                 value={visitadoEn}
                 onChange={e => setVisitadoEn(e.target.value)}
                 style={{ width: 'auto' }}
