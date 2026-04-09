@@ -15,6 +15,14 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Faltan campos requeridos' }, { status: 400 })
     }
 
+    let fechaVisita = null
+    if (visitadoEn && visitadoEn.trim() !== '') {
+      const parts = visitadoEn.split('-')
+      if (parts.length === 3) {
+        fechaVisita = new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]), 12, 0, 0)
+      }
+    }
+
     const resena = await prisma.resena.upsert({
       where: {
         userId_restauranteId: {
@@ -25,12 +33,12 @@ export async function POST(req: NextRequest) {
       update: {
         puntaje: Number(puntaje),
         comentario,
-        visitadoEn: visitadoEn ? new Date(visitadoEn) : null,
+        visitadoEn: fechaVisita,
       },
       create: {
         puntaje: Number(puntaje),
         comentario,
-        visitadoEn: visitadoEn ? new Date(visitadoEn) : null,
+        visitadoEn: fechaVisita,
         userId: session.user.id,
         restauranteId,
       },
